@@ -4,8 +4,8 @@ import { ChevronDown, Globe } from "lucide-react";
 
 const Header = () => {
     return (
-        <div className="py-5 px-[150px] bg-[rgba(23,22,26,0.7)] text-white flex justify-between items-center text-sm font-bold">
-            <div id="buttons" className="flex gap-[60px] ">
+        <div className="py-5 px-[20px] lg:px-[70px] bg-[rgba(23,22,26,0.7)] text-white flex justify-between items-center text-xs lg:text-sm font-bold">
+            <div id="buttons" className="hidden md:flex gap-[2px] md:gap-[10px] lg:gap-[20px] md:visible">
                 <Button variant="link">HOME</Button>
                 <Button variant="link">ABOUT US</Button>
                 <Button variant="link">OUR TEAMS</Button>
