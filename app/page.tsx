@@ -3,7 +3,7 @@ import MainContent from "@/components/MainContent";
 import Image from "next/image";
 
 async function getData() {
-    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const baseUrl = process.env.API_BASE_URL;
     const response = await fetch(`${baseUrl}/api/products`, { next: { revalidate: 60 } }); // Cache data for 60 second only/ revalidate after 60 seconds
     return response.json();
 }
