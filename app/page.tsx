@@ -4,8 +4,22 @@ import Image from "next/image";
 
 async function getData() {
     const baseUrl = process.env.API_BASE_URL;
-    const response = await fetch(`${baseUrl}/api/products`, { next: { revalidate: 60 } }); // Cache data for 60 second only/ revalidate after 60 seconds
-    return response.json();
+    try {
+        const response = await fetch(`${baseUrl}/api/products`, { 
+          next: { revalidate: 60 },
+          // Add cache option to help with static generation
+          cache: 'force-cache'
+        });
+    
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+    
+        return response.json();
+      } catch (error) {
+        console.error('Fetch error:', error);
+        return { products: [] }; // Return a default value instead of throwing
+      }
 }
 
 export default async function Home() {
