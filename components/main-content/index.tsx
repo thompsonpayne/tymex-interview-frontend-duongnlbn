@@ -3,7 +3,7 @@ import MainFilters from "./MainFilters";
 import Products from "./Products";
 import SecondaryFilter from "./SecondaryFilter";
 
-const MainContent = async ({ searchParams }: { searchParams: any }) => {
+const MainContent = async ({ searchParams }: { searchParams:  Promise<URLSearchParams> }) => {
     const params = await searchParams;
     console.log({ params });
     const data = await getData();

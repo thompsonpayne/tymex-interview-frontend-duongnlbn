@@ -2,13 +2,12 @@ import HeroSection from "@/components/HeroSection";
 import MainContent from "@/components/main-content";
 import Image from "next/image";
 
-export default function Home({ searchParams }: { searchParams: { searchParams: Promise<URLSearchParams> } }) {
-    
+export default function Home({ searchParams }: { searchParams: Promise<URLSearchParams> }) {
     return (
         <div className="">
             <HeroSection />
             <div className="w-full relative" style={{ backgroundImage: `url('/main-bg.png')` }}>
-                <MainContent searchParams={searchParams}/>
+                <MainContent searchParams={searchParams} />
 
                 <Image
                     src={"/footer-graphics.svg"}
