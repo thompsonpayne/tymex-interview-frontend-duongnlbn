@@ -1,5 +1,4 @@
 "use client";
-import { getData } from "@/app/actions";
 import { priceOptions, themeOptions, tierOptions, timeOptions } from "@/lib/utils";
 import { Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -12,19 +11,24 @@ const MainFilters = () => {
     const [sliderValue, setSliderValue] = useState([25, 100]);
     const router = useRouter();
     const searchParams = useSearchParams();
-    const handleSubmit = async () => {
-        const data = await getData();
-        console.log("submit", data);
-    };
 
+    // Init default values
+    const minPriceParam = searchParams.get("minPrice");
+    const maxPriceParam = searchParams.get("maxPrice");
+    const defaultPriceValues = [minPriceParam ? +minPriceParam : 0, maxPriceParam ? +maxPriceParam : 100];
     const setSearchParam = (key: string, value: string) => {
         const params = new URLSearchParams(searchParams.toString());
         params.set(key, value);
         router.replace(`?${params.toString()}`, { scroll: false });
     };
+    const defaultTier = searchParams.get("tier") ?? tierOptions[0];
+    const defaultTheme = searchParams.get("theme") ?? themeOptions[0];
+    const defaultTimeSort = searchParams.get("timeSort") ?? timeOptions[0];
+    const defaultPriceSort = searchParams.get("priceSort") ?? priceOptions[0];
+
 
     return (
-        <form action={handleSubmit} className="w-3/12 ">
+        <form className="w-3/12 ">
             <div className="relative w-full">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                 <Input placeholder="Search" className="pl-10"></Input>
@@ -35,7 +39,7 @@ const MainFilters = () => {
                 </label>
                 <Slider
                     name="price"
-                    defaultValue={[0, 100]}
+                    defaultValue={defaultPriceValues}
                     value={sliderValue}
                     onValueChange={(value) => setSliderValue(value)}
                     onValueCommit={(value) => {
@@ -59,7 +63,7 @@ const MainFilters = () => {
                     </label>
                     <Select
                         name="tier"
-                        defaultValue={tierOptions[0]}
+                        defaultValue={defaultTier}
                         onValueChange={(value) => setSearchParam("tier", value)}
                     >
                         <SelectTrigger className="w-full">
@@ -80,7 +84,11 @@ const MainFilters = () => {
                     <label htmlFor="theme" className="block pb-2 font-semibold text-[#89888B]">
                         THEME
                     </label>
-                    <Select name="theme" defaultValue={themeOptions[0]}>
+                    <Select
+                        name="theme"
+                        defaultValue={defaultTheme}
+                        onValueChange={(value) => setSearchParam("theme", value)}
+                    >
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select a theme" />
                         </SelectTrigger>
@@ -99,7 +107,11 @@ const MainFilters = () => {
                     <label htmlFor="time-sort" className="block pb-2 font-semibold text-[#89888B]">
                         TIME
                     </label>
-                    <Select name="time-sort" defaultValue={timeOptions[0]}>
+                    <Select
+                        name="time-sort"
+                        defaultValue={defaultTimeSort}
+                        onValueChange={(value) => setSearchParam("timeSort", value)}
+                    >
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Sort time" />
                         </SelectTrigger>
@@ -116,9 +128,13 @@ const MainFilters = () => {
                 </div>
                 <div>
                     <label htmlFor="price-sort" className="block pb-2 font-semibold text-[#89888B]">
-                        THEME
+                        PRICE
                     </label>
-                    <Select name="price-sort" defaultValue={priceOptions[0]}>
+                    <Select
+                        name="price-sort"
+                        defaultValue={defaultPriceSort}
+                        onValueChange={(value) => setSearchParam("priceSort", value)}
+                    >
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Sort price" />
                         </SelectTrigger>
