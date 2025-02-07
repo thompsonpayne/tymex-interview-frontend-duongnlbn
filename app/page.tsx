@@ -6,11 +6,9 @@ export default function Home({ searchParams }: { searchParams: Promise<URLSearch
     return (
         <div className="">
             <HeroSection />
-                {Date.now()}
-            <div className="w-full relative" style={{ backgroundImage: `url('/main-bg.png')` }}>
-                <Suspense fallback={"Loading..."}>
+            <div className="w-full relative bg-cover" style={{ backgroundImage: `url('/main-bg.png')` }}>
+                
                     <MainContent searchParams={searchParams} />
-                </Suspense>
 
                 <Image
                     src={"/footer-graphics.svg"}

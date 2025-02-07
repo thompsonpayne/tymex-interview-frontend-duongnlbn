@@ -1,3 +1,4 @@
+import { wait } from "@/lib/utils";
 import { IProduct } from "./model";
 
 export const getData = async (params?: URLSearchParams) => {
@@ -9,6 +10,7 @@ export const getData = async (params?: URLSearchParams) => {
         if (!response.ok) {
             throw new Error("Failed to fetch data");
         }
+        wait(1000) // simulate data fetching delay
         return response.json() as Promise<{
             data: IProduct[];
             timestamp: string;

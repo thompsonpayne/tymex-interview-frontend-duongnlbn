@@ -24,3 +24,7 @@ export const cateogyOptions = [
 ];
 export const timeOptions = ["Latest", "Oldest"];
 export const priceOptions = ["Low to high", "High to low"];
+
+export const wait = (time: number) => {
+    return new Promise((resolve) => setTimeout(() => resolve(true), time));
+};
