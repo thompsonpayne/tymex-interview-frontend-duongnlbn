@@ -8,7 +8,7 @@ const SecondaryFilter = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const categoryValues = searchParams.getAll("category");
-
+    
     const updateQueryParam = (values: string[]) => {
         const params = new URLSearchParams(searchParams.toString());
         if (!values.length) {
