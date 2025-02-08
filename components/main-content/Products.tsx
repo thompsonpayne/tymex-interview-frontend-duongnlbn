@@ -18,6 +18,7 @@ const Products = ({ products }: { products: IProduct[] }) => {
         setVisibleCount((prev) => prev + LOAD_SIZE);
     };
 
+    // Adjust scrolling when click load more
     useEffect(() => {
         if (containerRef.current && visibleCount !== LOAD_SIZE) {
             containerRef.current?.scrollTo({
@@ -84,7 +85,7 @@ const Products = ({ products }: { products: IProduct[] }) => {
             ) : null}
         </div>
     ) : (
-        <span>There's no item available</span>
+        <span>There&apos;s no item available</span>
     );
 };
 export default Products;

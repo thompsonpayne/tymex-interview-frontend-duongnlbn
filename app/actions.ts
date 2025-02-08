@@ -1,4 +1,4 @@
-import { priceOptions, timeOptions, wait } from "@/lib/utils";
+import { priceOptions, timeOptions } from "@/lib/utils";
 import { EPriceSort, ETimeSort, IProduct, SearchParams } from "./model";
 
 interface IDataRes {

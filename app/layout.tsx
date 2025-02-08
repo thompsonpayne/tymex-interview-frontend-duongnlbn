@@ -3,7 +3,8 @@ import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { heroImgUrl } from "@/lib/utils";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -29,9 +30,6 @@ export default function RootLayout({
         <html lang="en" className="dark">
             <body
                 className={`${inter.variable} ${interTight.variable} antialiased`}
-                style={{
-                    // backgroundImage: `url(${heroImgUrl})`
-                }}
             >
                 <SpeedInsights />
                 <div
@@ -40,9 +38,9 @@ export default function RootLayout({
                 ></div>
                 <div className="absolute inset-0 bg-black opacity-70"></div>
                 <div className="relative h-full">
-                  <Header />
-                  {children}
-
+                    <Header />
+                    {children}
+                    <Footer />
                 </div>
             </body>
         </html>
