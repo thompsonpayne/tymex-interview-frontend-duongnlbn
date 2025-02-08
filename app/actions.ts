@@ -16,7 +16,7 @@ export const getData = async (searchParams?: SearchParams): Promise<IDataRes> =>
         if (!response.ok) {
             throw new Error("Failed to fetch data");
         }
-        wait(3000); // simulate data fetching delay
+        // await wait(1000); // simulate data fetching delay
         const resData = (await response.json()) as IDataRes;
         const data = processData(resData, searchParams);
         return data;

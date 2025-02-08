@@ -27,7 +27,7 @@ const Products = ({ products }: { products: IProduct[] }) => {
         }
     }, [visibleCount]);
 
-    return (
+    return products.length ? (
         <div className="flex flex-col justify-center gap-10">
             <div
                 ref={containerRef}
@@ -39,42 +39,52 @@ const Products = ({ products }: { products: IProduct[] }) => {
             [&::-webkit-scrollbar-thumb]:rounded-ful"
             >
                 {items.map((product) => (
-                    <div key={product.id} className="rounded-lg bg-[#3A384199] p-4">
-                        <div className="relative">
-                            <Image
-                                width={235}
-                                height={233}
-                                alt="product"
-                                className="w-full"
-                                src={"https://placehold.co/235x233.png"}
-                            ></Image>
-                            <div className="absolute top-0 left-0 p-2 flex justify-between w-full">
-                                <div id="tag" className="bg-[#313B4580] rounded-sm px-3 py-1 text-xs">
-                                    {product.tier}
-                                </div>
-                                <Heart />
-                            </div>
-                        </div>
-                        <div className="pt-4 flex flex-col gap-2">
-                            <div id="title-wrapper" className="flex justify-between">
-                                <span>{product.title}</span>
-                                <div className="flex gap-1">
-                                    <Image width={8} height={14} src="/eth.svg" alt="eth price"></Image>
-                                    <span>{product.price}</span>
+                        <div key={product.id} className="rounded-lg bg-[#3A384199] p-4">
+                            <div className="relative">
+                                <Image
+                                    width={235}
+                                    height={233}
+                                    alt="product"
+                                    className="w-full"
+                                    src={"https://placehold.co/235x233.png"}
+                                ></Image>
+                                <div className="absolute top-0 left-0 p-2 flex justify-between w-full">
+                                    <div id="tag" className="bg-[#313B4580] rounded-sm px-3 py-1 text-xs">
+                                        {product.tier}
+                                    </div>
+                                    <Heart />
                                 </div>
                             </div>
-                            <div id="authour-wrapper" className="flex items-center text-xs">
-                                <Image alt="author avatar" width={32} height={32} src={product.author.avatar}></Image>
-                                <span>{product.author.email}</span>
+                            <div className="pt-4 flex flex-col gap-2">
+                                <div id="title-wrapper" className="flex justify-between">
+                                    <span>{product.title}</span>
+                                    <div className="flex gap-1">
+                                        <Image width={8} height={14} src="/eth.svg" alt="eth price"></Image>
+                                        <span>{product.price}</span>
+                                    </div>
+                                </div>
+                                <div id="authour-wrapper" className="flex items-center text-xs">
+                                    <Image
+                                        alt="author avatar"
+                                        width={32}
+                                        height={32}
+                                        src={product.author.avatar}
+                                    ></Image>
+                                    <span>{product.author.email}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    )
+                )}
             </div>
-            <Button onClick={loadMore} className="!py-6 !px-8 min-w-16 self-center">
-                View more
-            </Button>
+            {visibleCount < products.length ? (
+                <Button onClick={loadMore} className="!py-6 !px-8 min-w-16 self-center">
+                    View more
+                </Button>
+            ) : null}
         </div>
+    ) : (
+        <span>There's no item available</span>
     );
 };
 export default Products;

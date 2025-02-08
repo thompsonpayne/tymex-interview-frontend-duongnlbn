@@ -9,7 +9,14 @@ export default function Home({ searchParams }: { searchParams: Promise<SearchPar
         <div className="">
             <HeroSection />
             <div className="w-full relative bg-cover" style={{ backgroundImage: `url('/main-bg.png')` }}>
-                <Suspense fallback={<Skeleton className="h-[1100px] w-full"></Skeleton>}>
+                <Suspense
+                    fallback={
+                        <div className="flex space-x-4 p-12">
+                        <Skeleton className="h-[500px] w-3/12 rounded-lg p-5" >Loading filter...</Skeleton>
+                        <Skeleton className="w-3/4 h-[1000px] p-5" >Loading products...</Skeleton>
+                    </div>
+                    }
+                >
                     <MainContent searchParams={searchParams} />
                 </Suspense>
 

@@ -15,7 +15,7 @@ const MainFilters = ({ minPriceDefault, maxPriceDefault }: { minPriceDefault: nu
     // Init default values
     const minPriceParam = searchParams.get("minPrice");
     const maxPriceParam = searchParams.get("maxPrice");
-    const defaultPriceValues = [minPriceParam ? +minPriceParam : 0, maxPriceParam ? +maxPriceParam : 100];
+    const defaultPriceValues = [minPriceParam ? +minPriceParam : minPriceDefault, maxPriceParam ? +maxPriceParam : maxPriceDefault];
     const defaultTier = searchParams.get("tier") ?? tierOptions[0];
     const defaultTheme = searchParams.get("theme") ?? themeOptions[0];
     const defaultTimeSort = searchParams.get("timeSort") ?? timeOptions[0];
