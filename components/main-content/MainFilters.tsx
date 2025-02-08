@@ -6,9 +6,9 @@ import { useState } from "react";
 import { Input } from "../ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Slider } from "../ui/slider";
+import { Button } from "../ui/button";
 
-const MainFilters = () => {
-    const [sliderValue, setSliderValue] = useState([25, 100]);
+const MainFilters = ({ minPriceDefault, maxPriceDefault }: { minPriceDefault: number; maxPriceDefault: number }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
 
@@ -16,23 +16,38 @@ const MainFilters = () => {
     const minPriceParam = searchParams.get("minPrice");
     const maxPriceParam = searchParams.get("maxPrice");
     const defaultPriceValues = [minPriceParam ? +minPriceParam : 0, maxPriceParam ? +maxPriceParam : 100];
-    const setSearchParam = (key: string, value: string) => {
-        const params = new URLSearchParams(searchParams.toString());
-        params.set(key, value);
-        router.replace(`?${params.toString()}`, { scroll: false });
-    };
     const defaultTier = searchParams.get("tier") ?? tierOptions[0];
     const defaultTheme = searchParams.get("theme") ?? themeOptions[0];
     const defaultTimeSort = searchParams.get("timeSort") ?? timeOptions[0];
     const defaultPriceSort = searchParams.get("priceSort") ?? priceOptions[0];
 
+    // manual state manage for price slider
+    const [sliderValue, setSliderValue] = useState(defaultPriceValues);
+
+    // Set browser url query params
+    const setSearchParam = (key: string, value: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+        params.set(key, value);
+        router.replace(`?${params.toString()}`, { scroll: false });
+    };
+
+    // Handle search submit form
+    const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const values = Object.fromEntries(formData.entries()) as { search: string };
+        setSearchParam("search", values.search);
+    };
 
     return (
-        <form className="w-3/12 ">
-            <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-                <Input placeholder="Search" className="pl-10"></Input>
-            </div>
+        <div className="w-full lg:w-3/12">
+            <form onSubmit={handleSearchSubmit} className="flex flex-col xl:flex-row gap-1 ">
+                <div className="relative w-full">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+                    <Input name="search" placeholder="Search product name" className="pl-10"></Input>
+                </div>
+                <Button>Search</Button>
+            </form>
             <div className="pt-8 pb-5">
                 <label htmlFor="price" className="block pb-4 font-semibold">
                     PRICE
@@ -48,8 +63,9 @@ const MainFilters = () => {
                         params.set("maxPrice", `${value[1]}`);
                         router.push(`?${params.toString()}`, { scroll: false });
                     }}
-                    max={100}
-                    step={1}
+                    max={maxPriceDefault || 100}
+                    min={minPriceDefault || 0}
+                    step={0.1}
                 />
                 <div className="flex justify-between pt-2">
                     <label htmlFor="price">{sliderValue[0]}</label>
@@ -151,7 +167,7 @@ const MainFilters = () => {
                 </div>
             </div>
             {/* <Button type="submit">Search</Button> */}
-        </form>
+        </div>
     );
 };
 export default MainFilters;

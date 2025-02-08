@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
     },
     images: {
         domains: ["s3-alpha-sig.figma.com", "placehold.co", "robohash.org"]
-    }
+    },
 };
 
 export default nextConfig;

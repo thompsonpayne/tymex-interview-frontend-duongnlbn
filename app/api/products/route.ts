@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
 import data from "@/db.json";
+import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: Request) {
     try {
         return NextResponse.json({
-            timestamp: new Date().toISOString(), // This forces a change every request
+            timestamp: new Date().toISOString(),
             data: data.products
         });
     } catch (error) {

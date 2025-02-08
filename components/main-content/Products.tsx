@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 
 const LOAD_SIZE = 20;
+
 const Products = ({ products }: { products: IProduct[] }) => {
     const [visibleCount, setVisibleCount] = useState(LOAD_SIZE);
     const containerRef = useRef<HTMLDivElement>(null);

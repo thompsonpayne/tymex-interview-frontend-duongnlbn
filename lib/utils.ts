@@ -1,3 +1,4 @@
+import { EPriceSort, ETimeSort } from "@/app/model";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -22,8 +23,8 @@ export const cateogyOptions = [
     "Epic",
     "Rare"
 ];
-export const timeOptions = ["Latest", "Oldest"];
-export const priceOptions = ["Low to high", "High to low"];
+export const timeOptions = [ETimeSort.latest, ETimeSort.oldest];
+export const priceOptions = [EPriceSort.lowToHigh, EPriceSort.highToLow];
 
 export const wait = (time: number) => {
     return new Promise((resolve) => setTimeout(() => resolve(true), time));
