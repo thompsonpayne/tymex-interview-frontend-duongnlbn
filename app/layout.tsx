@@ -3,6 +3,7 @@ import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { heroImgUrl } from "@/lib/utils";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({
     variable: "--font-inter",
@@ -32,6 +33,7 @@ export default function RootLayout({
                     // backgroundImage: `url(${heroImgUrl})`
                 }}
             >
+                <SpeedInsights />
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${heroImgUrl})` }}
