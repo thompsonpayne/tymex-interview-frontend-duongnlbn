@@ -23,11 +23,4 @@ const MainContent = async ({ searchParams }: { searchParams: Promise<SearchParam
     );
 };
 
-const ProductWrapper = async ({ searchParams }: { searchParams: Promise<SearchParams> }) => {
-    const params = await searchParams;
-    const res = await getData(params);
-    console.log("fetched data", res);
-    return <Products products={res?.data || []} />;
-};
-
 export default MainContent;
