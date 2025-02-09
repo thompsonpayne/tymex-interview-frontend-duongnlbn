@@ -48,3 +48,4 @@ This project is deployed using Vercel.
 - Fetch data from local is quicker than production even though it's reading from static db.json file. Maybe issue due to caching behavior inconsitency between local and prod env? 🤔
 - Utilize server code to filter data so I haven't figured out how to properly show loading indicator on client yet.
 - Setting up unit test is absolute insanity.
+- Deploying with Vercel seems a bit unstable, domain woun't be accessible at times.
