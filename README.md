@@ -1,5 +1,5 @@
 ## Working demo
-(https://duong-shop.vercel.app/) or (https://tymex-interview-frontend-duongnlbn-thompsonpaynes-projects.vercel.app/)
+https://duong-shop.vercel.app/ or https://tymex-interview-frontend-duongnlbn-thompsonpaynes-projects.vercel.app/
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
@@ -20,8 +20,16 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
+For test:
+```bash
+npm run test
+# or
+yarn test
+# or
+pnpm test
+# or
+bun test
+```
 
 ## What's in here
 - Listing products with "load more" function
