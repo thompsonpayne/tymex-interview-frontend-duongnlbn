@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 
 const Footer = () => {
     return (
-        <div className="bg-[#17161A]  px-32">
+        <div className="bg-[#17161A] px-10 md:px-32">
             <div className="py-10  border-b border-[#3A3841]">
                 <div className="w-full flex justify-between flex-wrap gap-20">
                     <div id="navigate-footer" className="">
@@ -43,7 +43,7 @@ const Footer = () => {
                     </div>
                     <div id="subscribe" className="w-min-[430px]">
                         <div className="text-xl font-bold pb-8">SUBSCRIBE TO RECEIVE OUR LATEST UPDATE</div>
-                        <div className="flex gap-2">
+                        <div className="flex flex-col md:flex-row gap-2">
                             <Input placeholder="Your email address"></Input>
                             <Button className="!px-7">Subscribe</Button>
                         </div>

@@ -1,11 +1,11 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { ChevronDown, Globe } from "lucide-react";
+import { ChevronDown, Globe, Menu } from "lucide-react";
 
 const Header = () => {
     return (
         <div className="py-5 px-[20px] lg:px-[70px] bg-[rgba(23,22,26,0.7)] text-white flex justify-between items-center text-xs lg:text-sm font-bold">
-            <div id="buttons" className="hidden md:flex gap-[2px] md:gap-[10px] lg:gap-[20px] md:visible">
+            <div id="buttons" className="hidden md:visible md:flex gap-[2px] md:gap-[10px] lg:gap-[20px]">
                 <Button variant="link">HOME</Button>
                 <Button variant="link">ABOUT US</Button>
                 <Button variant="link">OUR TEAMS</Button>
@@ -13,6 +13,7 @@ const Header = () => {
                 <Button variant="link">ROAD MAP</Button>
                 <Button variant="link">WHITE PAPER</Button>
             </div>
+            <Menu className="md:hidden" />
             <div className="flex gap-2">
                 <Button>Connect Wallet</Button>
                 <Button variant="ghost">

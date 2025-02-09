@@ -7,7 +7,7 @@ import { Input } from "../ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Slider } from "../ui/slider";
 import { Button } from "../ui/button";
-
+import { debounce } from "lodash";
 const MainFilters = ({ minPriceDefault, maxPriceDefault }: { minPriceDefault: number; maxPriceDefault: number }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -15,7 +15,10 @@ const MainFilters = ({ minPriceDefault, maxPriceDefault }: { minPriceDefault: nu
     // Init default values
     const minPriceParam = searchParams.get("minPrice");
     const maxPriceParam = searchParams.get("maxPrice");
-    const defaultPriceValues = [minPriceParam ? +minPriceParam : minPriceDefault, maxPriceParam ? +maxPriceParam : maxPriceDefault];
+    const defaultPriceValues = [
+        minPriceParam ? +minPriceParam : minPriceDefault,
+        maxPriceParam ? +maxPriceParam : maxPriceDefault
+    ];
     const defaultTier = searchParams.get("tier") ?? tierOptions[0];
     const defaultTheme = searchParams.get("theme") ?? themeOptions[0];
     const defaultTimeSort = searchParams.get("timeSort") ?? timeOptions[0];
@@ -56,13 +59,13 @@ const MainFilters = ({ minPriceDefault, maxPriceDefault }: { minPriceDefault: nu
                     name="price"
                     defaultValue={defaultPriceValues}
                     value={sliderValue}
-                    onValueChange={(value) => setSliderValue(value)}
-                    onValueCommit={(value) => {
+                    onValueChange={setSliderValue}
+                    onValueCommit={debounce((value: number[]) => {
                         const params = new URLSearchParams(searchParams.toString());
                         params.set("minPrice", `${value[0]}`);
                         params.set("maxPrice", `${value[1]}`);
                         router.push(`?${params.toString()}`, { scroll: false });
-                    }}
+                    }, 500)}
                     max={maxPriceDefault || 100}
                     min={minPriceDefault || 0}
                     step={0.1}
