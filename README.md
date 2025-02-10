@@ -32,11 +32,12 @@ bun test
 ```
 
 ## What's in here
-- Listing products with "load more" function
+- Listing products with "load more" function.
 - Changing criteria automatically triggers products filtering.
 - Criteria filter retains after page reloads.
-- Skeleton loading for intial page load.
-- Data invalidates after 60 seconds (will trigger fetching new data after 60s)
+- Debounce pattern applied for category filter and price range filter.
+- Skeleton loading during intial page load.
+- Data invalidates after 60 seconds (will trigger fetching new data after 60s).
 - Custom components ui with shadcn ui.
 - Responsive for mobile, tablet, desktop.
 - Unit tests: not looking good 😔
@@ -48,4 +49,4 @@ This project is deployed using Vercel.
 - Fetch data from local is quicker than production even though it's reading from static db.json file. Maybe issue due to caching behavior inconsitency between local and prod env? 🤔
 - Utilize server code to filter data so I haven't figured out how to properly show loading indicator on client yet.
 - Setting up unit test is absolute insanity.
-- Deploying with Vercel seems a bit unstable, domain woun't be accessible at times.
+- Deploying with Vercel seems a bit unstable, domain isn't accessible at times.
