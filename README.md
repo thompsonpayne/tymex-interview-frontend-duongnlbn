@@ -47,6 +47,6 @@ This project is deployed using Vercel.
 
 ## Issues:
 - Fetch data from local is quicker than production even though it's reading from static db.json file. Maybe issue due to caching behavior inconsitency between local and prod env? 🤔
-- Utilize server code to filter data so I haven't figured out how to properly show loading indicator on client yet.
+- Utilize server code to filter data so I haven't figured out how to properly show loading indicator on client yet. Using tanstack query or SWR could resolve this, and also handle the data caching, but that would be extra libs to install.
 - Setting up unit test is absolute insanity.
 - Deploying with Vercel seems a bit unstable, domain isn't accessible at times.
